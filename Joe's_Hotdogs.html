@@ -1,0 +1,65 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Joe's Hotdog Stand</title>
+		<style type="text/css">
+			html,body,input {font-size: 30px;}
+		</style>
+</head>
+<body>
+
+<h1> Welcome to Joe's Hotdogs! </h1>
+<h3> Your Order </h3>
+
+<div id="hd"></div>
+<div id="fr"></div>
+<div id="sd"></div>
+<div id="discount"></div>
+<div id="sub"></div>
+<div id="tax"></div>
+<div id="total"></div>
+
+<script>
+
+
+  var hotdogs, fries, sodas = "null";
+  while (isNaN(hotdogs)) {
+  	hotdogs = prompt("How many Hotdogs?", ""); 
+  }
+  while (isNaN(fries)) {
+  	fries = prompt("How many fries?", "");
+  }
+  while (isNaN(sodas)) {
+  	sodas = prompt("How many sodas?", ""); 
+  }
+
+  document.getElementById("hd").innerHTML = " # Hotdogs: " + hotdogs + " at $3.25 is $" +  (Math.round((hotdogs *= 3.25) * 100) / 100).toFixed(2);
+  document.getElementById("fr").innerHTML = " # Fries: " + fries + " at $2.00 is $" +      (Math.round((fries *= 2) * 100) / 100).toFixed(2);
+  document.getElementById("sd").innerHTML = " # Sodas: " + sodas + " at $1.50 is $" +       (Math.round((sodas *= 1.5) * 100) / 100).toFixed(2);
+
+  var subtotal = hotdogs + fries + sodas;
+
+  if (subtotal > 20) {
+    document.getElementById("discount").innerHTML =
+    "You qualified for our 10% discount.";
+    subtotal = (Math.round((subtotal - (subtotal * .1)) * 100) / 100).toFixed(2);
+  }
+
+  subtotal = (Math.round(subtotal*100) / 100).toFixed(2);
+  var tax = (Math.round((subtotal*.0625) * 100) / 100).toFixed(2);
+
+  document.getElementById("sub").innerHTML = "Subtotal: $" + subtotal;
+  document.getElementById("tax").innerHTML = "Meals tax: $" + tax;
+
+  var num1 = parseFloat(subtotal);
+  var num2 = parseFloat(tax);
+  var sum = (Math.round((num1 + num2) * 100) / 100).toFixed(2);
+
+  document.getElementById("total").innerHTML = "Total: $" + sum;
+
+
+</script>
+
+</body>
+</html>
